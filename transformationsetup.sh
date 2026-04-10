@@ -26,14 +26,14 @@ sudo cp -rf desktopthemes/* /usr/share/plasma/desktoptheme/
 sudo mkdir /usr/share/aurorae/ && sudo mkdir /usr/share/aurorae/themes/
 sudo unzip Se7enAero.zip -d /usr/share/aurorae/themes/
 sudo cp -rf gtktheme/* /usr/share/themes/
-convert splashtheme/org.Win7.desktop/contents/splash/images/background-logon-default-windows-7.png -resize $(xrandr | grep \* | awk '{print $1}')! splashtheme/org.Win7.desktop/contents/splash/images/background.png
+convert splashtheme/org.Win7.desktop/contents/splash/images/background-logon-default-windows-7.png -resize 1920x1080! splashtheme/org.Win7.desktop/contents/splash/images/background.png
 sudo cp -rf splashtheme/* /usr/share/plasma/look-and-feel/
 sudo cp "Lock Widgets.desktop" /usr/share/applications/
 sudo cp "Unlock Widgets.desktop" /usr/share/applications/
 sudo cp "Win 7 Splash Fix.desktop" /usr/share/applications/
 sudo cp -rf sevenfonts/* /usr/share/fonts/
 sudo cp -rf plymouththeme/* /usr/share/plymouth/themes/
-clear
+
 
 
 echo "Copying presets" 
@@ -44,16 +44,16 @@ cp -rf presets/.config ~/
 sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breeze/
 sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breath2/
 sudo cp -rf sddmsettings/* /usr/share/sddm/themes/kubuntu/
-clear
+
 
 
 ## Boot Splash theme selection
 
 sudo echo "Setting Boot splash theme"
 sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/7/7.plymouth 100
-sudo update-alternatives --set default.plymouth /usr/share/plymouth/themes/7/7.plymouth
+sudo update-alternatives --config default.plymouth
 sudo update-initramfs -u
-clear
+
 
 # Arch Boot Splash theme setup
 
@@ -61,7 +61,6 @@ sudo plymouth-set-default-theme -R 7
 
 ## Complete section
 
-echo "Setup complete! Enjoy!"
-echo "Logging out!"
-sleep 5
-qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+echo "Setup complete!"
+
+exit 0
