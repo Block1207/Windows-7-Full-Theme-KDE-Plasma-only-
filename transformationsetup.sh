@@ -35,29 +35,23 @@ sudo cp -rf sevenfonts/* /usr/share/fonts/
 sudo cp -rf plymouththeme/* /usr/share/plymouth/themes/
 clear
 
-## Copy user config files section
 
-read -p "Copy presets? ALL CURRENT USER PROFILE DESKTOP SETTINGS WILL BE OVERWRITTEN! Y/N?:" USER_OPTION
-if [ "$USER_OPTION" ==  'Y' ];then
-        sudo echo "Copying presets"
-        cp -rf presets/.kde ~/
-        rm ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-        cp -rf presets/.config ~/
-        sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breeze/
-        sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breath2/
-        sudo cp -rf sddmsettings/* /usr/share/sddm/themes/kubuntu/
-        clear
-    else
-        echo "Skipping"
-        sleep 2
-        clear
-fi
+echo "Copying presets" 
+sudo echo "Copying presets"
+cp -rf presets/.kde ~/
+rm ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+cp -rf presets/.config ~/
+sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breeze/
+sudo cp -rf sddmsettings/* /usr/share/sddm/themes/breath2/
+sudo cp -rf sddmsettings/* /usr/share/sddm/themes/kubuntu/
+clear
+
 
 ## Boot Splash theme selection
 
 sudo echo "Setting Boot splash theme"
 sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/7/7.plymouth 100
-sudo update-alternatives --config default.plymouth
+sudo update-alternatives --set default.plymouth /usr/share/plymouth/themes/7/7.plymouth
 sudo update-initramfs -u
 clear
 
